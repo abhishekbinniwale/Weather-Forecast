@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  HomeScreenViewController.swift
 //  Weather Forecast
 //
 //  Created by Abhishek Binniwale on 29/08/20.
@@ -8,13 +8,16 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
-    }
-
-
+protocol HomeScreenView : class {
+    
 }
 
+class HomeScreenViewController: UIViewController, HomeScreenView {
+
+    var presenter : HomeScreenPresentation!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+
+}
