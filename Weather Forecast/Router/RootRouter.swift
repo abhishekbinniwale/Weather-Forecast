@@ -17,7 +17,7 @@ class RootRouter: RootWireframe {
     func presentMainScreen(in window: UIWindow) {
         window.rootViewController?.dismiss(animated: true, completion: nil)
         window.rootViewController = nil
-        //window.rootViewController = ContactListBuilder.assembleModule()
+        window.rootViewController = HomeScreenBuilder.assembleModule()
         window.makeKeyAndVisible()
     }
 }

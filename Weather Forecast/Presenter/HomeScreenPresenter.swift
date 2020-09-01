@@ -11,12 +11,14 @@ import Foundation
 
 protocol HomeScreenPresentation : class {
 
+    var view: HomeScreenView? { get }
     var router : HomeScreenWireframe! { get }
     var interactor : HomeScreenUseCase! { get }
     
     func viewDidLoad()
     func viewWillAppear()
     func viewWillDisapper()
+    func searchWeatherReportFor(city : String)
     
 }
 
@@ -26,18 +28,30 @@ class HomeScreenPresenter: HomeScreenPresentation {
     var router: HomeScreenWireframe!
     var interactor: HomeScreenUseCase!
 
+           
+    //1. clear data from DB which is last from 24hr
     
     func viewDidLoad() {
-        
+        self.interactor.deleteExpiredWeatherDataFromDB()
     }
     
-    func viewWillAppear() {
+    func viewWillAppear() { }
+    
+    func viewWillDisapper() { }
+    
+   
+    func searchWeatherReportFor(city : String) {
         
+        self.interactor.searchWeatherReportFor(city: city) { (result) in
+            switch result {
+            case let .success(weatherInfoDBModel):
+                let viewModel = WeatherInfoViewModel(weatherInfoDBModel: weatherInfoDBModel)
+                self.view?.updateUIWith(viewModel: viewModel)
+                break
+            case .failure(_):
+                self.view?.hideDataView(isHideen: true)
+                break
+            }
+        }
     }
-    
-    func viewWillDisapper() {
-        
-    }
-    
-    
 }

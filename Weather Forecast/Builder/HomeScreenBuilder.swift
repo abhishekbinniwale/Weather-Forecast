@@ -19,9 +19,9 @@ class HomeScreenBuilder: HomeScreenModuleBuilder {
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         if let homeScreenView = storyboard.instantiateViewController(withIdentifier: "HomeScreenViewController") as? HomeScreenViewController {
-            let presenter = HomeScreenPresenter()
             let interactor =  HomeScreenInteractor()
             let router = HomeScreenRouter()
+            let presenter  = HomeScreenPresenter()
             
             homeScreenView.presenter = presenter
             presenter.view = homeScreenView

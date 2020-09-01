@@ -16,5 +16,6 @@ protocol HomeScreenWireframe: class {
 class HomeScreenRouter: HomeScreenWireframe {
     
     weak var viewController : UIViewController?
+     weak var presenter: HomeScreenPresenter?
     
 }
