@@ -19,6 +19,7 @@ protocol HomeScreenPresentation : class {
     func viewWillAppear()
     func viewWillDisapper()
     func searchWeatherReportFor(city : String)
+    func showAlert(title : String , message: String)
     
 }
 
@@ -50,8 +51,15 @@ class HomeScreenPresenter: HomeScreenPresentation {
                 break
             case .failure(_):
                 self.view?.hideDataView(isHideen: true)
+                self.showAlert(title: "Error", message: "Error while fetching weather data . Please check the city name once and try again")
                 break
             }
+        }
+    }
+    
+    func showAlert(title : String , message: String) {
+        DispatchQueue.main.async {
+            self.router.showAlert(title: title, message: message)
         }
     }
 }

@@ -12,7 +12,6 @@ protocol HomeScreenView : class {
     
     func updateUIWith(viewModel : WeatherInfoViewModel)
     func hideDataView(isHideen : Bool)
-    
 }
 
 class HomeScreenViewController: UIViewController, HomeScreenView , UISearchBarDelegate {
@@ -78,10 +77,6 @@ class HomeScreenViewController: UIViewController, HomeScreenView , UISearchBarDe
         DispatchQueue.main.async {
             self.contentViewOutlet.isHidden = isHideen
         }
-    }
-    
-    func showErroAlert(){
-        
     }
     
 }
