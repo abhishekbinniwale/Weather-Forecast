@@ -47,6 +47,10 @@ class HomeScreenViewController: UIViewController, HomeScreenView , UISearchBarDe
         searchBar.delegate = self
         searchBar.placeholder = "Search City Weather"
         searchBar.sizeToFit()
+        searchBar.enablesReturnKeyAutomatically = true
+        searchBar.showsCancelButton = true
+        searchBar.keyboardAppearance = .dark
+        searchBar.enablesReturnKeyAutomatically = true
         navigationItem.titleView = searchBar
         self.hideDataView(isHideen: true)
     }
@@ -57,6 +61,11 @@ class HomeScreenViewController: UIViewController, HomeScreenView , UISearchBarDe
         if let searchText = searchBar.searchTextField.text {
             self.presenter?.searchWeatherReportFor(city: searchText)
         }
+    }
+    
+    //Close Keyboard
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
     }
     
      //MARK:- HomeScreenView methods
